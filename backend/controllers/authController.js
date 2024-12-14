@@ -68,10 +68,10 @@ export const  login = async (req, res) => {
         const isPasswordCorrect = await bcrypt.compare(password, user?.password || "")
 
         
-
+        //Check if user exists and password is correct
         if (!user  || !isPasswordCorrect) { return res.status(400).json({error: "Invalid credentials"})}
        
-
+        //Set cookie
         generateTokenandSetCookie(user._id, res)
 
         res.status(200).json({
